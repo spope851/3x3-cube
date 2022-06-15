@@ -1,6 +1,7 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# UI for app that solves 3x3x3 Rubik's Cube
+## user may click any square to change it's color with the ```ColorPicker``` component
+## each time a color is chosen, the squares are all validated by ```validateColors``` util to ensure the cube can be solved
+## all squares' positions and colors are accessible in the global inputs object
 
 ## Available Scripts
 
