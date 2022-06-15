@@ -1,42 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { ColorPickerContext } from '../App';
+import Face from './face';
 
-const Cube = ({name}) => {
-    const colorPicker = useContext(ColorPickerContext)
-    const [color, setColor] = useState('white')
+const Cube = () => {
 
-    useEffect(() => {
-        const cube = document.getElementById(`cube-${name}`);
-        const cbx = cube.getContext('2d');
-        if (colorPicker.cube === name) {
-            setColor(colorPicker.color)
-            colorPicker.setCube(undefined)
-            colorPicker.setInputs({
-                ...colorPicker.inputs,
-                [name]: colorPicker.color,
-            })
-            colorPicker.setColor(undefined)
-        }
-        console.log(color);
-        cbx.fillStyle = color
-        cbx.fillRect(0, 0, 50, 50);
-    }, [colorPicker.color, name, color])
-
-    return (
-        <canvas
-            height={50}
-            width={50}
-            id={`cube-${name}`}
-            style={{
-                border: 'solid black',
-                borderWidth: '3px'
-            }}
-            onClick={() => {
-                colorPicker.setCube(name)
-                colorPicker.setShowCp(true)
-            }}
-        ></canvas>
-    )
+  return (
+    <div style={{ paddingTop: 5 }}>
+      <div style={{ marginLeft: 192 }}>
+        <Face name='top' />
+      </div>
+      <div style={{ display: 'flex' }}>
+        <Face name='left'/>
+        <Face name='front' />
+        <Face name='right' />
+        <Face name='back' />
+      </div>
+      <div style={{ marginLeft: 192 }}>
+        <Face name='bottom' /> 
+      </div>
+    </div>
+  );
 }
 
-export default Cube
+export default Cube;
