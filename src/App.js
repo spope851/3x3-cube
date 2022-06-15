@@ -39,18 +39,33 @@ function App() {
           inputs,
           setInputs,
         }}>
-      <div className="App">
+      <div
+        className="App"
+        style={{
+          display: 'flex',
+        }}>
         <Cube />
-        {
-          showCp
-          ? <ColorPicker />
-          : <button
-              onClick={() => alert('YOO')}
-              disabled={disabled}
-            >solve</button>
-        }
+        <div
+          style={{
+            alignSelf: 'center',
+            marginLeft: 100
+          }}>
+          {
+            showCp
+            ? <ColorPicker />
+            : <button
+                onClick={() => alert('YOO')}
+                disabled={disabled}
+              >solve</button>
+          }
+        </div>
       </div>
-      {JSON.stringify(inputs, null, 2)}
+      <div
+        style={{
+          padding: 50
+        }}>
+        {JSON.stringify(inputs, null, 2)}
+      </div>
     </ColorPickerContext.Provider>
   );
 }

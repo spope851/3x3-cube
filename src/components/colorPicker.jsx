@@ -4,7 +4,6 @@ const ColorPicker = ({name}) =>
         <canvas
             id='color-picker'
             style={{
-            marginLeft: 700,
             border: "solid 5px"
             }}
             width={150}
