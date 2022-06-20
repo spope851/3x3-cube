@@ -64,7 +64,7 @@ function App() {
         style={{
           padding: 50
         }}>
-        {JSON.stringify(inputs, null, 2)}
+        {JSON.stringify(inputs).replace(/"([^"]+)":/g, '$1:')}
       </div>
     </ColorPickerContext.Provider>
   );
