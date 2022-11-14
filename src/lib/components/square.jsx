@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ColorPickerContext } from '../App';
+import { ColorPickerContext } from './App';
 
 const Square = ({ name }) => {
     const { 

@@ -16,7 +16,7 @@ export const ColorPickerContext = createContext({
   inputs: undefined,
 })
 
-function CubeSolver() {
+function App() {
   const [showCp, setShowCp] = useState(false)
   const [colorPickerCube, setColorPickerCube] = useState()
   const [colorPickerColor, setColorPickerColor] = useState()
@@ -70,4 +70,4 @@ function CubeSolver() {
   );
 }
 
-export default CubeSolver;
+export default App;
