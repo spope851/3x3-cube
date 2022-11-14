@@ -16,7 +16,7 @@ export const ColorPickerContext = createContext({
   inputs: undefined,
 })
 
-function App() {
+function CubeSolver() {
   const [showCp, setShowCp] = useState(false)
   const [colorPickerCube, setColorPickerCube] = useState()
   const [colorPickerColor, setColorPickerColor] = useState()
@@ -54,7 +54,7 @@ function App() {
             showCp
             ? <ColorPicker />
             : <button
-                onClick={() => alert('YOO')}
+                onClick={() => alert('soon')}
                 disabled={disabled}
               >solve</button>
           }
@@ -70,4 +70,4 @@ function App() {
   );
 }
 
-export default App;
+export default CubeSolver;

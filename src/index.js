@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CubeSolver from './CubeSolver';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('react-cube-solver'));
 root.render(
   <React.StrictMode>
-    <App />
+    <CubeSolver />
   </React.StrictMode>
 );
 
