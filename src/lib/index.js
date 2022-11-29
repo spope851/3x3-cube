@@ -1,3 +1,3 @@
-import CubeSolver from './components/App'
+import CubeSolver, { getFacelets } from './components/App'
 
-export { CubeSolver }
+export { CubeSolver, getFacelets }

@@ -4,6 +4,7 @@ import Cube from './cube';
 import ColorPicker from './colorPicker';
 import { SQUARES } from '../constants/squares'
 import { validateColors } from '../utils/validateColors';
+import { faceletString } from '../utils/cubejsCompatibility';
 
 export const ColorPickerContext = createContext({
   setShowCp: () => undefined,
@@ -15,17 +16,32 @@ export const ColorPickerContext = createContext({
   inputs: undefined,
 })
 
-const CubeSolver = () => {
+export let getFacelets
+
+const CubeSolver = ({ solve }) => {
   const [showCp, setShowCp] = useState(false)
   const [colorPickerCube, setColorPickerCube] = useState()
   const [colorPickerColor, setColorPickerColor] = useState()
   const [inputs, setInputs] = useState(SQUARES)
   const [disabled, setDisabled] = useState(false)
+  const [solving, setSolving] = useState(false)
+  const [solution, setSolution] = useState('')
+
+  const solveCube = async () => {
+    setSolving(true)
+    await solve().then(data => setSolution(data)).finally(() => setSolving(false))
+  }
+
+  useEffect(() => {
+    solveCube()
+  }, [])
 
   useEffect(() => {
     colorPicker(showCp, setShowCp, setColorPickerColor)
     setDisabled(!validateColors(inputs))
   }, [showCp, colorPickerCube, colorPickerColor, inputs])
+
+  getFacelets = () => faceletString(inputs)
 
   return (
     <ColorPickerContext.Provider
@@ -53,7 +69,7 @@ const CubeSolver = () => {
             showCp
             ? <ColorPicker />
             : <button
-                onClick={() => alert('soon')}
+                onClick={solveCube}
                 disabled={disabled}
               >solve</button>
           }
@@ -62,8 +78,9 @@ const CubeSolver = () => {
       <div
         style={{
           padding: 50
-        }}>
-        {JSON.stringify(inputs).replace(/"([^"]+)":/g, '$1:')}
+        }}
+      >
+        {solving ? '...solving' : solution}
       </div>
     </ColorPickerContext.Provider>
   );
