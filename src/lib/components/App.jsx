@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
 import colorPicker from '../utils/colorPicker'
 import Cube from './cube';
+import '../styles/cube.css';
 import ColorPicker from './colorPicker';
 import { SQUARES } from '../constants/squares'
 import { validateColors } from '../utils/validateColors';
 import { faceletString } from '../utils/cubejsCompatibility';
+import { moveToKey } from '../utils/movesKey';
 
 export const ColorPickerContext = createContext({
   setShowCp: () => undefined,
@@ -24,17 +26,15 @@ const CubeSolver = ({ solve }) => {
   const [colorPickerColor, setColorPickerColor] = useState()
   const [inputs, setInputs] = useState(SQUARES)
   const [disabled, setDisabled] = useState(false)
-  const [solving, setSolving] = useState(false)
   const [solution, setSolution] = useState('')
+  const [solving, setSolving] = useState(false)
 
   const solveCube = async () => {
     setSolving(true)
-    await solve().then(data => setSolution(data)).finally(() => setSolving(false))
+    await solve()
+      .then(data => setSolution(data))
+      .finally(() => setSolving(false))
   }
-
-  useEffect(() => {
-    solveCube()
-  }, [])
 
   useEffect(() => {
     colorPicker(showCp, setShowCp, setColorPickerColor)
@@ -61,6 +61,7 @@ const CubeSolver = ({ solve }) => {
         }}>
         <Cube />
         <div
+          id='color-picker-wrapper'
           style={{
             alignSelf: 'center',
             marginLeft: 100
@@ -71,16 +72,33 @@ const CubeSolver = ({ solve }) => {
             : <button
                 onClick={solveCube}
                 disabled={disabled}
-              >solve</button>
+              >{solving ? '...solving' : 'solve'}</button>
           }
         </div>
       </div>
       <div
+        className='solution-container'
         style={{
-          padding: 50
-        }}
-      >
-        {solving ? '...solving' : solution}
+          padding: '50px 50px 0px'
+        }}>
+        {solution && (
+          <>
+            <h4>solution:</h4>
+            <p>{solution.join(' ')}</p>
+          </>
+        )}
+      </div>
+      <div
+        className='solution-container'
+        style={{
+          padding: '0px 50px 50px'
+        }}>
+        {solution && (
+          <>
+            <h4>steps:</h4>
+            {solution.map((move, idx) => <p>{idx + 1}. <strong>{move}: </strong>{moveToKey(move)}</p>)}
+          </>
+        )}
       </div>
     </ColorPickerContext.Provider>
   );

@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ColorPicker = ({name}) => 
+const ColorPicker = () => 
         <canvas
             id='color-picker'
             style={{
-            border: "solid 5px"
+                border: "solid 5px",
             }}
             width={150}
             height={100}

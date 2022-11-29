@@ -18,7 +18,7 @@ const colorPicker = (showCp, setShowCp, setColor) => {
         cpx.fillRect(100, 50, 50, 50);
       
         cp.addEventListener('mousedown', function(e) {
-            console.log(getCursorPosition(cp, e, setShowCp));
+            // console.log(getCursorPosition(cp, e, setShowCp));
             setColor(getCursorPosition(cp, e, setShowCp))
         })
       }
