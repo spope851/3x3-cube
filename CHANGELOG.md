@@ -1,4 +1,12 @@
-# [v1.0.3] - 2022-11-29
+# [v2.0.0] - 2023-01-16
+
+### Added
+
+- refactored for Next.js compatibility
+- removed all stylesheets from build
+- indegrated [MUI](https://mui.com) for mobile support (breakpoints/media queries)
+
+## [v1.0.3] - 2022-11-29
 
 ### Added
 

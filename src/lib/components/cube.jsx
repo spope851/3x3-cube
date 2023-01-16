@@ -1,28 +1,61 @@
-import React from 'react';
-import Face from './face';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Typography } from '@mui/material'
+import Face from './face'
+
+const H3 = styled(Typography)`
+  display: block;
+  text-align: center;
+  ${props => props.theme.breakpoints.up("md")} {
+    display: none;
+  }
+`
+
+const FactHeader = ({ label }) => 
+<H3
+  variant='h5'
+  className='face'
+>{label}</H3>
+
+const TopBottomRow = styled('div')`
+  margin-left: 0px;
+  ${props => props.theme.breakpoints.up("md")} {
+    margin-left: 192px;
+  }
+`
+
+const MidRow = styled('div')`
+  display: flex;
+  ${props => props.theme.breakpoints.down("md")} {
+    flex-direction: column;
+  }
+`
 
 const Cube = () => {
 
   return (
     <div style={{ paddingTop: 5 }}>
-      <div className='top-bottom-row'>
-        <h3 className='face'>top face</h3>
+      <TopBottomRow>
+        <FactHeader label="top face" />
         <Face name='top' />
-      </div>
-      <div id='mid-row' style={{ display: 'flex' }}>
-        <h3 className='face'>left face</h3>
+      </TopBottomRow>
+      <MidRow>
+        <FactHeader label="left face" />
         <Face name='left'/>
-        <h3 className='face'>front face</h3>
+        <FactHeader label="front face" />
         <Face name='front' />
-        <h3 className='face'>right face</h3>
+        <FactHeader label="right face" />
         <Face name='right' />
-        <h3 className='face'>back face</h3>
+        <H3
+          variant='h5'
+          className='face'
+        >back face</H3>
         <Face name='back' />
-      </div>
-      <div className='top-bottom-row'>
-        <h3 className='face'>bottom face</h3>
+      </MidRow>
+      <TopBottomRow>
+        <FactHeader label="bottom face" />
         <Face name='bottom' /> 
-      </div>
+      </TopBottomRow>
     </div>
   );
 }

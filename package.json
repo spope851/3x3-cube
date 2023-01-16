@@ -1,15 +1,17 @@
 {
   "name": "3x3-cube",
-  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
     "dist",
     "README.md"
   ],
-  "version": "1.0.4",
+  "version": "2.0.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",

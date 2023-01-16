@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from 'react';
 import colorPicker from './utils/colorPicker'
-import './App.css';
 import Cube from './components/cube';
 import ColorPicker from './components/colorPicker';
 import { SQUARES } from './constants/squares'
 import { faceletString } from './utils/cubejsCompatibility';
 import { validateColors } from './utils/validateColors';
 import { moveToKey } from './utils/movesKey';
+import styled from '@emotion/styled';
 
 export const ColorPickerContext = createContext({
   setShowCp: () => undefined,
@@ -17,6 +17,29 @@ export const ColorPickerContext = createContext({
   setInputs: () => undefined,
   inputs: undefined,
 })
+
+const AppWrapper = styled('div')`
+  display: flex;
+  ${props => props.theme.breakpoints.down("md")} {
+    justify-content: space-between;
+  }
+`
+
+const ColorPickerWrapper = styled('div')`
+  align-self: center;
+  margin-left: 100px;
+  ${props => props.theme.breakpoints.down("md")} {
+    justify-content: space-between;
+  }
+`
+
+const SolutionContainer = styled('div')`
+  ${props => props.theme.breakpoints.down("md")} {
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+`
 
 function App() {
   const [showCp, setShowCp] = useState(false)
@@ -51,18 +74,9 @@ function App() {
           inputs,
           setInputs,
         }}>
-      <div
-        className="App"
-        style={{
-          display: 'flex',
-        }}>
+      <AppWrapper>
         <Cube />
-        <div
-          id='color-picker-wrapper'
-          style={{
-            alignSelf: 'center',
-            marginLeft: 100
-          }}>
+        <ColorPickerWrapper>
           {
             showCp
             ? <ColorPicker />
@@ -71,10 +85,9 @@ function App() {
                 disabled={disabled}
               >{solving ? '...solving' : 'solve'}</button>
           }
-        </div>
-      </div>
-      <div
-        className='solution-container'
+        </ColorPickerWrapper>
+      </AppWrapper>
+      <SolutionContainer
         style={{
           padding: '50px 50px 0px'
         }}>
@@ -84,19 +97,18 @@ function App() {
             <p>{solution.join(' ')}</p>
           </>
         )}
-      </div>
-      <div
-        className='solution-container'
+      </SolutionContainer>
+      <SolutionContainer
         style={{
           padding: '0px 50px 50px'
         }}>
         {solution && (
           <>
             <h4>steps:</h4>
-            {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong>{move}: </strong>{moveToKey(move)}</p>)}
+            {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
           </>
         )}
-      </div>
+      </SolutionContainer>
     </ColorPickerContext.Provider>
   );
 }

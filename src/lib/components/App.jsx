@@ -1,12 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
 import colorPicker from '../utils/colorPicker'
 import Cube from './cube';
-import '../styles/cube.css';
 import ColorPicker from './colorPicker';
 import { SQUARES } from '../constants/squares'
 import { validateColors } from '../utils/validateColors';
 import { faceletString } from '../utils/cubejsCompatibility';
 import { moveToKey } from '../utils/movesKey';
+import styled from '@emotion/styled';
 
 export const ColorPickerContext = createContext({
   setShowCp: () => undefined,
@@ -18,9 +18,32 @@ export const ColorPickerContext = createContext({
   inputs: undefined,
 })
 
+const AppWrapper = styled('div')`
+  display: flex;
+  ${props => props.theme.breakpoints.down("md")} {
+    justify-content: space-between;
+  }
+`
+
+const ColorPickerWrapper = styled('div')`
+  align-self: center;
+  margin-left: 100px;
+  ${props => props.theme.breakpoints.down("md")} {
+    justify-content: space-between;
+  }
+`
+
+const SolutionContainer = styled('div')`
+  ${props => props.theme.breakpoints.down("md")} {
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+`
+
 export let getFacelets
 
-const CubeSolver = ({ solve }) => {
+export const CubeSolver = ({ solve }) => {
   const [showCp, setShowCp] = useState(false)
   const [colorPickerCube, setColorPickerCube] = useState()
   const [colorPickerColor, setColorPickerColor] = useState()
@@ -54,54 +77,41 @@ const CubeSolver = ({ solve }) => {
           inputs,
           setInputs,
         }}>
-      <div
-        className="App"
-        style={{
-          display: 'flex',
-        }}>
-        <Cube />
-        <div
-          id='color-picker-wrapper'
+        <AppWrapper>
+          <Cube />
+          <ColorPickerWrapper>
+            {
+              showCp
+              ? <ColorPicker />
+              : <button
+                  onClick={solveCube}
+                  disabled={disabled}
+                >{solving ? '...solving' : 'solve'}</button>
+            }
+          </ColorPickerWrapper>
+        </AppWrapper>
+        <SolutionContainer
           style={{
-            alignSelf: 'center',
-            marginLeft: 100
+            padding: '50px 50px 0px'
           }}>
-          {
-            showCp
-            ? <ColorPicker />
-            : <button
-                onClick={solveCube}
-                disabled={disabled}
-              >{solving ? '...solving' : 'solve'}</button>
-          }
-        </div>
-      </div>
-      <div
-        className='solution-container'
-        style={{
-          padding: '50px 50px 0px'
-        }}>
-        {solution && (
-          <>
-            <h4>solution:</h4>
-            <p>{solution.join(' ')}</p>
-          </>
-        )}
-      </div>
-      <div
-        className='solution-container'
-        style={{
-          padding: '0px 50px 50px'
-        }}>
-        {solution && (
-          <>
-            <h4>steps:</h4>
-            {solution.map((move, idx) => <p>{idx + 1}. <strong>{move}: </strong>{moveToKey(move)}</p>)}
-          </>
-        )}
-      </div>
+          {solution && (
+            <>
+              <h4>solution:</h4>
+              <p>{solution.join(' ')}</p>
+            </>
+          )}
+        </SolutionContainer>
+        <SolutionContainer
+          style={{
+            padding: '0px 50px 50px'
+          }}>
+          {solution && (
+            <>
+              <h4>steps:</h4>
+              {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
+            </>
+          )}
+        </SolutionContainer>
     </ColorPickerContext.Provider>
   );
 }
-
-export default CubeSolver;
