@@ -1,12 +1,13 @@
 {
   "name": "3x3-cube",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
     "dist",
     "README.md"
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.16.4",
