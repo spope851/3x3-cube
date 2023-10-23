@@ -1,3 +1,9 @@
+# [v2.0.3] - 2023-10-23
+
+### Added
+
+- styling updates for interoperability
+
 # [v2.0.0] - 2023-01-16
 
 ### Added

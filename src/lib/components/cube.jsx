@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import Face from './face'
 
 const H3 = styled(Typography)`
@@ -34,7 +34,7 @@ const MidRow = styled('div')`
 const Cube = () => {
 
   return (
-    <div style={{ paddingTop: 5 }}>
+    <Stack gap={{sx: 0, md: "20px"}}>
       <TopBottomRow>
         <FactHeader label="top face" />
         <Face name='top' />
@@ -56,7 +56,7 @@ const Cube = () => {
         <FactHeader label="bottom face" />
         <Face name='bottom' /> 
       </TopBottomRow>
-    </div>
+    </Stack>
   );
 }
 

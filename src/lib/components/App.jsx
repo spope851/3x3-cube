@@ -90,28 +90,28 @@ export const CubeSolver = ({ solve }) => {
             }
           </ColorPickerWrapper>
         </AppWrapper>
-        <SolutionContainer
-          style={{
-            padding: '50px 50px 0px'
-          }}>
-          {solution && (
-            <>
-              <h4>solution:</h4>
-              <p>{solution.join(' ')}</p>
-            </>
-          )}
-        </SolutionContainer>
-        <SolutionContainer
-          style={{
-            padding: '0px 50px 50px'
-          }}>
-          {solution && (
-            <>
-              <h4>steps:</h4>
-              {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
-            </>
-          )}
-        </SolutionContainer>
+        {solution && (
+          <SolutionContainer
+            style={{
+              padding: '50px 50px 0px'
+            }}>
+              <>
+                <h4>solution:</h4>
+                <p>{solution.join(' ')}</p>
+              </>
+          </SolutionContainer>
+        )}
+        {solution && (
+          <SolutionContainer
+            style={{
+              padding: '0px 50px 50px'
+            }}>
+              <>
+                <h4>steps:</h4>
+                {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
+              </>
+          </SolutionContainer>
+        )}
     </ColorPickerContext.Provider>
   );
 }
