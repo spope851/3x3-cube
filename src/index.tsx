@@ -1,14 +1,7 @@
 import React from 'react'
 import { CubeSolver as App, getFacelets } from './App'
-import { ThemeProvider, createTheme } from '@mui/material'
 
-const Cube: React.FC<{solve: () => Promise<string[]>}> = ({ solve }) => {
-    return (
-        <ThemeProvider theme={createTheme()}>
-            <App solve={solve}/>
-        </ThemeProvider>
-    )
-}
+const Cube: React.FC<{solve: () => Promise<string[]>}> = ({ solve }) => <App solve={solve}/>
 
 export { Cube, getFacelets }
 
@@ -17,8 +10,6 @@ export { Cube, getFacelets }
 // const root = ReactDOM.createRoot(document.getElementById('react-cube-solver')!);
 // root.render(
 //   <React.StrictMode>
-//     <ThemeProvider theme={createTheme()}>
-//       <App solve />
-//     </ThemeProvider>
+//     <App solve />
 //   </React.StrictMode>
 // );

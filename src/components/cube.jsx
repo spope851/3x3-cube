@@ -33,7 +33,7 @@ const MidRow = styled('div')`
 const Cube = () => {
 
   return (
-    <Stack gap={{sx: 0, md: "20px"}}>
+    <Stack gap={{xs: 0, md: "20px"}}>
       <TopBottomRow>
         <FactHeader label="top face" />
         <Face name='top' />

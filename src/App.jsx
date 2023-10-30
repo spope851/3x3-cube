@@ -7,6 +7,7 @@ import { faceletString } from './utils/cubejsCompatibility';
 import { validateColors } from './utils/validateColors';
 import { moveToKey } from './utils/movesKey';
 import styled from '@emotion/styled';
+import { ThemeProvider, createTheme } from '@mui/material'
 
 export const ColorPickerContext = createContext({
   setShowCp: () => undefined,
@@ -67,51 +68,53 @@ export const CubeSolver = ({ solve }) => {
   getFacelets = () => faceletString(inputs)
 
   return (
-    <ColorPickerContext.Provider
-      value={{
-          setShowCp,
-          colorPickerColor,
-          setColorPickerColor,
-          colorPickerCube,
-          setColorPickerCube,
-          inputs,
-          setInputs,
-        }}>
-      <AppWrapper>
-        <Cube />
-        <ColorPickerWrapper>
-          {
-            showCp
-            ? <ColorPicker />
-            : <button
-                onClick={solveCube}
-                disabled={disabled}
-              >{solving ? '...solving' : 'solve'}</button>
-          }
-        </ColorPickerWrapper>
-      </AppWrapper>
-      {solution && (<SolutionContainer
-        style={{
-          padding: '50px 50px 0px'
-        }}>
-        
-          <>
-            <h4>solution:</h4>
-            <p>{solution.join(' ')}</p>
-          </>
-        
-      </SolutionContainer>)}
-      {solution && (<SolutionContainer
-        style={{
-          padding: '0px 50px 50px'
-        }}>
-        
-          <>
-            <h4>steps:</h4>
-            {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
-          </>
-        
-      </SolutionContainer>)}
-    </ColorPickerContext.Provider>
+    <ThemeProvider theme={createTheme()}>
+      <ColorPickerContext.Provider
+        value={{
+            setShowCp,
+            colorPickerColor,
+            setColorPickerColor,
+            colorPickerCube,
+            setColorPickerCube,
+            inputs,
+            setInputs,
+          }}>
+        <AppWrapper>
+          <Cube />
+          <ColorPickerWrapper>
+            {
+              showCp
+              ? <ColorPicker />
+              : <button
+                  onClick={solveCube}
+                  disabled={disabled}
+                >{solving ? '...solving' : 'solve'}</button>
+            }
+          </ColorPickerWrapper>
+        </AppWrapper>
+        {solution && (<SolutionContainer
+          style={{
+            padding: '50px 50px 0px'
+          }}>
+          
+            <>
+              <h4>solution:</h4>
+              <p>{solution.join(' ')}</p>
+            </>
+          
+        </SolutionContainer>)}
+        {solution && (<SolutionContainer
+          style={{
+            padding: '0px 50px 50px'
+          }}>
+          
+            <>
+              <h4>steps:</h4>
+              {solution.map((move, idx) => <p key={idx}>{idx + 1}. <strong style={{ marginLeft: '10px' }}>{move}: </strong>{moveToKey(move)}</p>)}
+            </>
+          
+        </SolutionContainer>)}
+      </ColorPickerContext.Provider>
+    </ThemeProvider>
   );
 }
