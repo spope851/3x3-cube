@@ -1,10 +1,12 @@
-## 2.1.2
+## CHANGELOG
 
 ## 2.1.3
 
 ### Patch Changes
 
 - d060b70: move emoption and mui to dependencies
+
+## 2.1.2
 
 ### Patch Changes
 
