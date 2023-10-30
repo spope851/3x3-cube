@@ -1,5 +1,11 @@
 # [v2.0.3] - 2023-10-23
 
+## 2.1.1
+
+### Patch Changes
+
+- d16fd64: move theme provider out of root component
+
 ### Added
 
 - styling updates for interoperability
