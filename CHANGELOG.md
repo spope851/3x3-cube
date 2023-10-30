@@ -1,5 +1,11 @@
 ## 2.1.2
 
+## 2.1.3
+
+### Patch Changes
+
+- d060b70: move emoption and mui to dependencies
+
 ### Patch Changes
 
 - c4ee0c1: move react to peerdependencies
