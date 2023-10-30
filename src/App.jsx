@@ -41,7 +41,9 @@ const SolutionContainer = styled('div')`
   }
 `
 
-function App() {
+export let getFacelets
+
+export const CubeSolver = ({ solve }) => {
   const [showCp, setShowCp] = useState(false)
   const [colorPickerCube, setColorPickerCube] = useState()
   const [colorPickerColor, setColorPickerColor] = useState()
@@ -55,13 +57,14 @@ function App() {
     setDisabled(!validateColors(inputs))
   }, [showCp, colorPickerCube, colorPickerColor, inputs])
 
-  const solve = async () => {
+  const solveCube = async () => {
     setSolving(true)
-    await fetch(`http://localhost/api/solveCube?facelets=${faceletString(inputs)}`)
-      .then(res => res.json())
+    await solve()
       .then(data => setSolution(data))
       .finally(() => setSolving(false))
   }
+
+  getFacelets = () => faceletString(inputs)
 
   return (
     <ColorPickerContext.Provider
@@ -81,7 +84,7 @@ function App() {
             showCp
             ? <ColorPicker />
             : <button
-                onClick={solve}
+                onClick={solveCube}
                 disabled={disabled}
               >{solving ? '...solving' : 'solve'}</button>
           }
@@ -112,5 +115,3 @@ function App() {
     </ColorPickerContext.Provider>
   );
 }
-
-export default App;
