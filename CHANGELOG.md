@@ -1,5 +1,11 @@
 # [v2.0.3] - 2023-10-23
 
+## 2.1.2
+
+### Patch Changes
+
+- c4ee0c1: move react to peerdependencies
+
 ## 2.1.1
 
 ### Patch Changes
