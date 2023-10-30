@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import colorPicker from './utils/colorPicker'
 import Cube from './components/cube';
 import ColorPicker from './components/colorPicker';

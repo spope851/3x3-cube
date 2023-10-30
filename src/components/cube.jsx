@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Stack, Typography } from '@mui/material';
 import Face from './face';
+import React from 'react'
 
 const H3 = styled(Typography)`
   display: block;

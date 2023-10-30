@@ -1,4 +1,5 @@
 import Square from './square';
+import React from 'react'
 
 const Face = ({ name }) => {
 
